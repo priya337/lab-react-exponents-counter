@@ -1,28 +1,42 @@
+import React, { useState } from "react";
 import "./App.css";
 import Counter from "./components/Counter";
-import ExponentTwo from "./components/ExponentTwo";
-import ExponentThree from "./components/ExponentThree";
-import ExponentFour from "./components/ExponentFour";
-import ExponentFive from "./components/ExponentFive";
-import ExponentSix from "./components/ExponentSix";
+import Exponent from "./Exponent";
 
+function App() {
+  // State to manage the counter value
+  const [counterValue, setCounterValue] = useState(0);
 
-function App () {
+  // Increment and Decrement functions are here
+  const increment = () => {
+    setCounterValue((prevCount) => prevCount + 1);
+  };
+
+  const decrement = () => {
+    setCounterValue((prevCount) => prevCount - 1);
+  };
+
   return (
     <div className="App">
       <h2><em>Counter</em></h2>
-  
-      <Counter/>
+
+      {/* Pass counter value, increment, and decrement functions to Counter */}
+      <Counter
+        counterValue={counterValue}
+        increment={increment}
+        decrement={decrement}
+      />
 
       <br />
       <h2><em>Exponents</em></h2>
 
       <div className="container">
-        <ExponentTwo />
-        <ExponentThree />
-        <ExponentFour />
-        <ExponentFive />
-        <ExponentSix />
+        {/* Use the Exponent component for different exponent values */}
+        <Exponent num={counterValue} exponent={2} />
+        <Exponent num={counterValue} exponent={3} />
+        <Exponent num={counterValue} exponent={4} />
+        <Exponent num={counterValue} exponent={5} />
+        <Exponent num={counterValue} exponent={6} />
       </div>
     </div>
   );
